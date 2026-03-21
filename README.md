@@ -13,8 +13,8 @@ Sebuah *mini-game* interaktif berbasis web bertema Ramadan dan Idul Fitri. Proye
 ## 🎮 Live Preview
 **Mainkan gamenya di sini:** https://gameucapanidulfitri.netlify.app/
 
-> *(Opsional: Tambahkan GIF berdurasi 3-5 detik di sini yang memperlihatkan gameplay saat Boss diserang dan animasi kemenangan)*
-> `![Gameplay Preview](link-gambar-gif-kamu.gif)`
+<img src="https://drive.google.com/file/d/1mSyPCgEx0rB5z6AKWYb2HpJFv1BgXC1d/view?usp=drive_link" alt="Preview quest Idul Fitri" width="200px">
+> `![Gameplay Preview](https://drive.google.com/file/d/1mSyPCgEx0rB5z6AKWYb2HpJFv1BgXC1d/view?usp=drive_link)`
 
 ---
 
