@@ -11,7 +11,7 @@ Sebuah *mini-game* interaktif berbasis web bertema Ramadan dan Idul Fitri. Proye
 ---
 
 ## 🎮 Live Preview
-**Mainkan gamenya di sini:** ([https://gameucapanidulfitri.netlify.app/])
+**Mainkan gamenya di sini:** https://gameucapanidulfitri.netlify.app/
 
 > *(Opsional: Tambahkan GIF berdurasi 3-5 detik di sini yang memperlihatkan gameplay saat Boss diserang dan animasi kemenangan)*
 > `![Gameplay Preview](link-gambar-gif-kamu.gif)`
