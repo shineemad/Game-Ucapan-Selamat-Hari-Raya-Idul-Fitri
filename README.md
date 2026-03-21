@@ -11,7 +11,7 @@ Sebuah *mini-game* interaktif berbasis web bertema Ramadan dan Idul Fitri. Proye
 ---
 
 ## 🎮 Live Preview
-**Mainkan gamenya di sini:** [[Tulis Link Live Demo Di Sini, contoh: quest-fitri.vercel.app]]([https://gameucapanidulfitri.netlify.app/])
+**Mainkan gamenya di sini:** ([https://gameucapanidulfitri.netlify.app/])
 
 > *(Opsional: Tambahkan GIF berdurasi 3-5 detik di sini yang memperlihatkan gameplay saat Boss diserang dan animasi kemenangan)*
 > `![Gameplay Preview](link-gambar-gif-kamu.gif)`
@@ -47,4 +47,4 @@ Karena proyek ini dibangun menggunakan Vanilla Web Technologies, kamu tidak perl
 
 1. *Clone* repositori ini:
    ```bash
-   git clone [LINK_GITHUB_REPO_KAMU]
+   git clone https://github.com/shineemad/Game-Ucapan-Selamat-Hari-Raya-Idul-Fitri/tree/main
