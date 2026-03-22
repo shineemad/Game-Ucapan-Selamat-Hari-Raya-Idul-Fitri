@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quest Idul Fitri 1447 H - Ahmad Riyadi</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <div class="lantern left">🏮</div>
+      <div class="lantern right">🏮</div>
+
+      <div id="screen-start" class="screen active">
+        <h1>MISI: KEMENANGAN FITRI</h1>
+        <p>
+          Player 1, persiapkan dirimu.<br />Lalui 3 stage ujian Ramadan sebelum
+          gerbang Syawal terbuka.
+        </p>
+        <div class="difficulty-select">
+          <button id="btn-mode-normal" class="arcade-btn mode active">
+            MODE NORMAL
+          </button>
+          <button id="btn-mode-hard" class="arcade-btn mode hard">
+            MODE SULIT
+          </button>
+        </div>
+        <p class="mode-banner" id="mode-banner">
+          Mode Normal: santai untuk pemanasan.
+        </p>
+        <button id="btn-start" class="arcade-btn">PRESS START</button>
+      </div>
+
+      <button id="btn-music-toggle" class="arcade-btn">MUSIC: ON</button>
+
+      <div id="screen-boss" class="screen">
+        <h2 id="stage-title">STAGE 1: KALAHKAN HAWA NAFSU</h2>
+        <p id="mode-label" class="mode-banner">MODE: NORMAL</p>
+        <div class="hud-grid">
+          <div class="hud-item">
+            <span>LEVEL</span><strong id="stage-indicator">1/3</strong>
+          </div>
+          <div class="hud-item">
+            <span>TIMER</span><strong id="stage-timer">20s</strong>
+          </div>
+          <div class="hud-item">
+            <span>COMBO</span><strong id="stage-combo">x0</strong>
+          </div>
+        </div>
+        <div class="stage-progress" id="stage-progress"></div>
+        <div class="boss-sprite" id="boss-icon">👹</div>
+        <div class="hp-bar-container">
+          <div class="hp-bar" id="boss-hp"></div>
+        </div>
+        <p id="stage-description">
+          Pukul mundur hawa nafsu dan ego<br />untuk membuka gerbang kemenangan!
+        </p>
+        <div class="controls">
+          <button id="btn-attack" class="arcade-btn attack">SERANG!</button>
+          <button id="btn-power" class="arcade-btn power" disabled>
+            POWER STRIKE
+          </button>
+          <button id="btn-dodge" class="arcade-btn dodge" disabled>
+            DODGE
+          </button>
+        </div>
+        <p id="stage-status" class="status-line">
+          Bangun combo untuk mengisi Power Strike.
+        </p>
+      </div>
+
+      <div id="screen-victory" class="screen">
+        <h1 class="glow-text">LEVEL COMPLETE!</h1>
+        <div class="victory-icon">🕌🌙</div>
+        <h2>SELAMAT IDUL FITRI</h2>
+        <p>1 Syawal 1447 H</p>
+        <p id="final-stats"></p>
+        <p class="message">
+          Taqabbalallahu Minna Wa Minkum.<br /><br />
+          Mohon maaf lahir dan batin atas segala 'Bug' perkataan<br />dan
+          'Error' perbuatan di masa lalu.<br />Mari kita deploy versi terbaik
+          dari diri kita!<br />
+          <span class="signature">✨ Salam Hangat dari, Ahmad Riyadi ✨</span>
+        </p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

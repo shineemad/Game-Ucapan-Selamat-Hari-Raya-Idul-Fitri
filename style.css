@@ -1,0 +1,378 @@
+:root {
+  /* Tema Malam Ramadan: Hijau Zamrud & Emas */
+  --bg-dark: #021c13;
+  --bg-light: #064e3b;
+  --primary: #fbbf24; /* Emas */
+  --primary-glow: rgba(251, 191, 36, 0.4);
+  --danger: #ef4444;
+  --text-main: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Press Start 2P", system-ui, sans-serif;
+}
+
+body {
+  background-color: #000;
+  color: var(--text-main);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Efek Langit Bintang Sederhana */
+  background-image:
+    radial-gradient(white, rgba(255, 255, 255, 0.2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 30px),
+    radial-gradient(white, rgba(255, 255, 255, 0.1) 2px, transparent 40px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+  animation: starBackground 100s linear infinite;
+}
+
+@keyframes starBackground {
+  from { background-position: 0 0, 40px 60px, 130px 270px; }
+  to { background-position: -550px -550px, -310px -290px, -120px -280px; }
+}
+
+#game-container {
+  position: relative;
+  width: min(96vw, 900px);
+  height: min(92vh, 640px);
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+  border: 4px solid var(--primary);
+  box-shadow: 0 0 30px var(--primary-glow), inset 0 0 50px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* Dekorasi Lampion melayang di pojok */
+.lantern {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.5;
+  animation: float 4s ease-in-out infinite;
+}
+.lantern.left { top: 20px; left: 20px; animation-delay: 0s; }
+.lantern.right { top: 20px; right: 20px; animation-delay: 2s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+}
+
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+h1 {
+  font-size: clamp(1rem, 3.5vw, 1.5rem);
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  text-shadow: 3px 3px 0px #000, 0 0 15px var(--primary-glow);
+}
+
+h2 {
+  font-size: clamp(0.8rem, 2.8vw, 1.1rem);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: #10b981;
+  text-shadow: 2px 2px 0px #000;
+}
+
+p {
+  font-size: clamp(0.55rem, 1.8vw, 0.7rem);
+  line-height: 2;
+  margin-bottom: 2rem;
+  color: #cbd5e1;
+  text-shadow: 1px 1px 0px #000;
+}
+
+.arcade-btn {
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 1rem 2rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 10px var(--primary-glow);
+  border-radius: 5px;
+}
+
+.arcade-btn:hover {
+  background: var(--primary);
+  color: #000;
+  box-shadow: 0 0 20px var(--primary);
+  transform: scale(1.05);
+}
+
+.arcade-btn.attack {
+  border-color: var(--danger);
+  color: var(--danger);
+  box-shadow: inset 0 0 10px rgba(239, 68, 68, 0.2);
+}
+
+.arcade-btn.attack:hover {
+  background: var(--danger);
+  color: #fff;
+  box-shadow: 0 0 20px var(--danger);
+}
+
+.boss-sprite {
+  font-size: clamp(2.7rem, 8vw, 4rem);
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px #ef4444);
+}
+
+.hud-grid {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.hud-item {
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  background: rgba(2, 6, 23, 0.45);
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+.hud-item span {
+  display: block;
+  font-size: 0.45rem;
+  margin-bottom: 0.4rem;
+  color: #fde68a;
+}
+
+.hud-item strong {
+  font-size: 0.6rem;
+  color: #f8fafc;
+}
+
+.stage-progress {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.stage-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #fbbf24;
+  background: transparent;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.25);
+  transition: all 0.25s ease;
+}
+
+.stage-dot.done {
+  background: #10b981;
+  border-color: #10b981;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+}
+
+.stage-dot.active {
+  background: #fbbf24;
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.8);
+}
+
+.hp-bar-container {
+  width: 80%;
+  height: 20px;
+  border: 2px solid var(--primary);
+  margin-bottom: 2rem;
+  background: #000;
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.hp-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #ef4444, #f97316);
+  transition: width 0.3s ease;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+}
+
+.arcade-btn.power {
+  border-color: #22d3ee;
+  color: #22d3ee;
+  box-shadow: inset 0 0 10px rgba(34, 211, 238, 0.2);
+}
+
+.arcade-btn.power:hover {
+  background: #22d3ee;
+  color: #082f49;
+  box-shadow: 0 0 20px #22d3ee;
+}
+
+.arcade-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.difficulty-select {
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.arcade-btn.mode {
+  font-size: 0.55rem;
+  padding: 0.7rem 0.9rem;
+  min-width: 150px;
+}
+
+.arcade-btn.mode.active {
+  background: var(--primary);
+  color: #000;
+  box-shadow: 0 0 14px var(--primary);
+}
+
+.arcade-btn.mode.hard.active {
+  background: #ef4444;
+  color: #fff;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.8);
+  border-color: #ef4444;
+}
+
+#btn-music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: grab;
+  padding: 0.7rem 0.85rem;
+  font-size: 0.52rem;
+  border-color: #22d3ee;
+  color: #67e8f9;
+  box-shadow: inset 0 0 10px rgba(34, 211, 238, 0.25), 0 0 15px rgba(34, 211, 238, 0.3);
+  background: rgba(0, 0, 0, 0.65);
+  transition: all 0.3s ease;
+}
+
+#btn-music-toggle:hover {
+  background: #22d3ee;
+  color: #082f49;
+  box-shadow: 0 0 25px #22d3ee;
+  cursor: grab;
+}
+
+#btn-music-toggle.muted {
+  border-color: #94a3b8;
+  color: #cbd5e1;
+  box-shadow: inset 0 0 8px rgba(148, 163, 184, 0.2), 0 0 10px rgba(148, 163, 184, 0.15);
+}
+
+#btn-music-toggle.muted:hover {
+  background: rgba(148, 163, 184, 0.3);
+  box-shadow: 0 0 15px rgba(148, 163, 184, 0.4);
+}
+
+.arcade-btn.dodge {
+  border-color: #f59e0b;
+  color: #f59e0b;
+  box-shadow: inset 0 0 10px rgba(245, 158, 11, 0.25);
+}
+
+.arcade-btn.dodge:hover {
+  background: #f59e0b;
+  color: #1c1917;
+  box-shadow: 0 0 20px #f59e0b;
+}
+
+.mode-banner {
+  font-size: 0.55rem;
+  margin-bottom: 0.8rem;
+  color: #93c5fd;
+  min-height: 1rem;
+}
+
+.mode-banner.hard {
+  color: #fca5a5;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+}
+
+.status-line {
+  min-height: 22px;
+  margin-bottom: 0;
+  color: #fde68a;
+}
+
+.victory-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 20px var(--primary));
+}
+
+.glow-text {
+  color: var(--primary);
+  text-shadow: 0 0 15px var(--primary-glow), 0 0 30px var(--primary-glow);
+}
+
+.signature {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 0.8rem;
+  color: #34d399;
+  text-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
+  border-top: 1px dashed #34d399;
+  padding-top: 15px;
+}
+
+@media (max-width: 768px) {
+  .screen { padding: 1.1rem 0.8rem; }
+  .hud-grid { width: 100%; gap: 0.4rem; }
+  .arcade-btn { padding: 0.85rem 1rem; font-size: 0.58rem; flex: 1 1 45%; }
+  .arcade-btn.mode { min-width: 140px; }
+  .difficulty-select { width: 100%; max-width: 420px; flex-direction: row; align-items: center; justify-content: center; gap: 0.65rem; }
+  #btn-mode-normal, #btn-mode-hard { width: calc(50% - 0.35rem); min-width: 0; }
+  #btn-start { width: auto; max-width: 280px; max-height: 10vh; margin-top: 0.5rem; padding: 1rem 2rem; font-size: 0.8rem; display: block; }
+  .hp-bar-container { width: 94%; height: 18px; margin-bottom: 1rem; }
+}
+
+@media (max-width: 480px) {
+  #game-container { width: 100vw; height: 100vh; border-radius: 0; border-width: 0; }
+  .lantern { font-size: 1.3rem; }
+  .hud-item span { font-size: 0.4rem; }
+  .hud-item strong { font-size: 0.52rem; }
+  .arcade-btn { flex: 1 1 100%; }
+  #btn-mode-normal, #btn-mode-hard { width: 100%; font-size: 0.52rem; padding: 0.85rem 0.9rem; }
+  #btn-start { width: 100%; max-width: 240px; height: 100%; margin: 0 auto; display: block; padding: 1rem 2rem; font-size: 0.8rem; }
+  #btn-music-toggle { padding: 0.6rem 0.7rem; font-size: 0.48rem; }
+}
